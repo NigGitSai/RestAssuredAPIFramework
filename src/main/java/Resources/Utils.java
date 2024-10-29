@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.jayway.jsonpath.Configuration;
@@ -26,6 +28,9 @@ public class Utils extends ExtentReportListener{
 	JsonPath js;
 	DocumentContext context;
 	Configuration configuration;
+	List<Map<String, Object>> jsonNode;
+	protected static String actVal;
+	Map<String,Object> hm;
 
 	public static RequestSpecification reqSpecification;
 
@@ -56,10 +61,14 @@ public class Utils extends ExtentReportListener{
 		return prop.getProperty(key);
 	}
 
+	public JsonPath initializeRestJsonPathRef(Response response)
+	{
+		return js = new JsonPath(response.asString());
+	}
 
 	public Object getResponseJsonValueUsingRestAssured(Response response,String path)
 	{
-		js = new JsonPath(response.asString());
+		initializeRestJsonPathRef(response);
 
 		return js.get(path);
 	}
@@ -90,5 +99,31 @@ public class Utils extends ExtentReportListener{
 		{
 			testStatus("fail", verificationMsg+" . Expected value : "+expected+" not equals Actual value :"+actual);
 		}
+	}
+	
+	public List<Map<String, Object>> returnListfromJsonResponse(Response response, String path)
+	{
+		initializeRestJsonPathRef(response);
+		return js.getList(path);
+	}
+	
+	public Map<String,Object> returnMapForMatchingValueFromJsonArray(Response response,String listPath,String key,String expJsonValue)
+	{
+		
+		jsonNode = returnListfromJsonResponse(response,listPath);
+		
+		 if (jsonNode == null || jsonNode.isEmpty()) {
+		        return null; // Return null if the JSON node is empty or missing
+		    }
+		
+		 for (Map<String, Object> node : jsonNode) {
+		        actVal = (String) node.get(key);
+		        if (actVal != null && actVal.equalsIgnoreCase(expJsonValue)) {
+		            return node; // Return matching node directly
+		        }
+		    }
+
+		    return null;
+		
 	}
 }
