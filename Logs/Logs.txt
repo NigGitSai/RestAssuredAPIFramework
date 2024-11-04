@@ -12,22 +12,22 @@ Multiparts:		<none>
 Body:
 {
     "location": {
-        "lat": -32.523494,
-        "lng": 31.32532525
+        "lat": -31.2321,
+        "lng": 33.12414
     },
-    "accuracy": 51,
-    "name": "Backyard house",
-    "phone_number": "(+91) 215 893 3937",
-    "address": "31, side layout, neww 09",
+    "accuracy": 50,
+    "name": "Frontline house",
+    "phone_number": "(+91) 983 893 3937",
+    "address": "29, side layout, cohen 09",
     "types": [
-        "shoe park",
-        "shop"
+        " \"shoe park\"",
+        "\n    \"shop\""
     ],
     "website": "http://google.com",
-    "language": "German"
+    "language": "French-IN"
 }
 HTTP/1.1 200 OK
-Date: Sun, 27 Oct 2024 15:07:41 GMT
+Date: Mon, 04 Nov 2024 14:42:34 GMT
 Server: Apache/2.4.52 (Ubuntu)
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: POST
@@ -40,17 +40,17 @@ Content-Type: application/json;charset=UTF-8
 
 {
     "status": "OK",
-    "place_id": "e0ca6966ed763862941271ac27208728",
+    "place_id": "38493405be869e4bd32574e671b3ca3f",
     "scope": "APP",
-    "reference": "cc7693208a5a8199ecd2deb888d0eabbcc7693208a5a8199ecd2deb888d0eabb",
-    "id": "cc7693208a5a8199ecd2deb888d0eabb"
+    "reference": "48e626ed8f7bb662fddd4e85cbef884048e626ed8f7bb662fddd4e85cbef8840",
+    "id": "48e626ed8f7bb662fddd4e85cbef8840"
 }
 Request method:	GET
-Request URI:	https://rahulshettyacademy.com/maps/api/place/get/json?key=qaclick123&place_id=e0ca6966ed763862941271ac27208728
+Request URI:	https://rahulshettyacademy.com/maps/api/place/get/json?key=qaclick123&place_id=38493405be869e4bd32574e671b3ca3f
 Proxy:			<none>
 Request params:	<none>
 Query params:	key=qaclick123
-				place_id=e0ca6966ed763862941271ac27208728
+				place_id=38493405be869e4bd32574e671b3ca3f
 Form params:	<none>
 Path params:	<none>
 Headers:		Accept=*/*
@@ -60,72 +60,42 @@ Multiparts:		<none>
 Body:
 {
     "location": {
-        "lat": -32.523494,
-        "lng": 31.32532525
+        "lat": -31.2321,
+        "lng": 33.12414
     },
-    "accuracy": 51,
-    "name": "Backyard house",
-    "phone_number": "(+91) 215 893 3937",
-    "address": "31, side layout, neww 09",
+    "accuracy": 50,
+    "name": "Frontline house",
+    "phone_number": "(+91) 983 893 3937",
+    "address": "29, side layout, cohen 09",
     "types": [
-        "shoe park",
-        "shop"
+        " \"shoe park\"",
+        "\n    \"shop\""
     ],
     "website": "http://google.com",
-    "language": "German"
+    "language": "French-IN"
 }
 HTTP/1.1 200 OK
-Date: Sun, 27 Oct 2024 15:07:42 GMT
+Date: Mon, 04 Nov 2024 14:42:35 GMT
 Server: Apache/2.4.52 (Ubuntu)
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: POST
 Access-Control-Max-Age: 3600
 Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With
-Content-Length: 254
+Content-Length: 269
 Keep-Alive: timeout=5, max=100
 Connection: Keep-Alive
 Content-Type: application/json;charset=UTF-8
 
 {
     "location": {
-        "latitude": "-32.523494",
-        "longitude": "31.32532525"
+        "latitude": "-31.2321",
+        "longitude": "33.12414"
     },
-    "accuracy": "51",
-    "name": "Backyard house",
-    "phone_number": "(+91) 215 893 3937",
-    "address": "31, side layout, neww 09",
-    "types": "shoe park,shop",
+    "accuracy": "50",
+    "name": "Frontline house",
+    "phone_number": "(+91) 983 893 3937",
+    "address": "29, side layout, cohen 09",
+    "types": " \"shoe park\",\n    \"shop\"",
     "website": "http://google.com",
-    "language": "German"
-}
-Request method:	POST
-Request URI:	https://rahulshettyacademy.com/maps/api/place/delete/json?key=qaclick123
-Proxy:			<none>
-Request params:	<none>
-Query params:	key=qaclick123
-Form params:	<none>
-Path params:	<none>
-Headers:		Accept=*/*
-				Content-Type=application/json
-Cookies:		<none>
-Multiparts:		<none>
-Body:
-{
-    "place_id": "e0ca6966ed763862941271ac27208728"
-}
-HTTP/1.1 200 OK
-Date: Sun, 27 Oct 2024 15:07:43 GMT
-Server: Apache/2.4.52 (Ubuntu)
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Methods: POST
-Access-Control-Max-Age: 3600
-Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With
-Content-Length: 15
-Keep-Alive: timeout=5, max=100
-Connection: Keep-Alive
-Content-Type: application/json;charset=UTF-8
-
-{
-    "status": "OK"
+    "language": "French-IN"
 }

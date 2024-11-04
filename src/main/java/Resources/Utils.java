@@ -25,12 +25,14 @@ public class Utils extends ExtentReportListener{
 
 	RequestSpecBuilder reqBuilder ;
 
-	JsonPath js;
+	protected static JsonPath js;
 	DocumentContext context;
 	Configuration configuration;
 	List<Map<String, Object>> jsonNode;
 	protected static String actVal;
 	Map<String,Object> hm;
+	static Properties prop;
+	static FileInputStream fis;
 
 	public static RequestSpecification reqSpecification;
 
@@ -52,11 +54,12 @@ public class Utils extends ExtentReportListener{
 
 	public static String readProperties(String key) throws IOException
 	{
-		Properties prop = new Properties();
-
-
-		FileInputStream fis = new FileInputStream(new File("./src/test/resources/config/config.properties"));
-		prop.load(fis);
+		if(prop==null)
+		{
+			prop = new Properties();
+			fis = new FileInputStream(new File("./src/test/resources/config/config.properties"));
+			prop.load(fis);
+		}
 
 		return prop.getProperty(key);
 	}
@@ -68,7 +71,8 @@ public class Utils extends ExtentReportListener{
 
 	public Object getResponseJsonValueUsingRestAssured(Response response,String path)
 	{
-		initializeRestJsonPathRef(response);
+		js = initializeRestJsonPathRef(response);
+
 
 		return js.get(path);
 	}
@@ -100,30 +104,53 @@ public class Utils extends ExtentReportListener{
 			testStatus("fail", verificationMsg+" . Expected value : "+expected+" not equals Actual value :"+actual);
 		}
 	}
-	
+
 	public List<Map<String, Object>> returnListfromJsonResponse(Response response, String path)
 	{
-		initializeRestJsonPathRef(response);
+		//js = initializeRestJsonPathRef(response);
+		String strResponse = response.asString();
+		js = new JsonPath(strResponse);
+		System.out.println(js.getList(path));
 		return js.getList(path);
 	}
-	
+
 	public Map<String,Object> returnMapForMatchingValueFromJsonArray(Response response,String listPath,String key,String expJsonValue)
 	{
-		
-		jsonNode = returnListfromJsonResponse(response,listPath);
-		
-		 if (jsonNode == null || jsonNode.isEmpty()) {
-		        return null; // Return null if the JSON node is empty or missing
-		    }
-		
-		 for (Map<String, Object> node : jsonNode) {
-		        actVal = (String) node.get(key);
-		        if (actVal != null && actVal.equalsIgnoreCase(expJsonValue)) {
-		            return node; // Return matching node directly
-		        }
-		    }
 
-		    return null;
-		
+		jsonNode = returnListfromJsonResponse(response,listPath);
+
+		if (jsonNode == null || jsonNode.isEmpty()) {
+			return null; // Return null if the JSON node is empty or missing
+		}
+
+		for (Map<String, Object> node : jsonNode) {
+			actVal = (String) node.get(key);
+			if (actVal != null && actVal.equalsIgnoreCase(expJsonValue)) {
+				return node; // Return matching node directly
+			}
+		}
+
+		return null;
+
+	}
+
+	public long returnResponseTime(Response response)
+	{
+		return response.getTime();
+	}
+
+	public String returnResponseHeader(Response response,String header)
+	{
+		return response.getHeader(header);
+	}
+
+	public String returnStatusLine(Response response)
+	{
+		return response.getStatusLine();
+	}
+
+	public String returnStatusCode(Response response)
+	{
+		return String.valueOf(response.statusCode());
 	}
 }

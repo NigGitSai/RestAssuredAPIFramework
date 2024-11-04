@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="5.358" tests="2" skipped="0" failures="0" errors="0">
-<testcase classname="Verify Place API's" name="To verify Add Place API - #1.1" time="3.342">
+<testsuite name="Cucumber" time="88.832" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Verify Place API's" name="To verify Add Place API" time="88.427">
 <system-out><![CDATA[
-Given Add Place Payload with "Backyard house" "German"  and "31, side layout, neww 09".passed
+Given Configure Excel Data "PlaceTestData"..................................passed
+Given Configure "Add Place" Request payload with excel data.................passed
 When user calls "AddPlaceRequest" with "POST" HTTP Request..................passed
 Then verify the status code is 200..........................................passed
 And "status" is "OK"  in response body......................................passed
 When user calls "GetPlaceRequest" with "GET" HTTP Request...................passed
-Then verify place_Id created maps to "Backyard house" using getPlaceAPI.....passed
-]]></system-out>
-</testcase>
-<testcase classname="Verify Place API's" name="To verify Delete Place API" time="1.672">
-<system-out><![CDATA[
-Given Delete Place Payload..................................................passed
-When user calls "DeletePlaceRequest" with "POST" HTTP Request...............passed
-Then verify the status code is 200..........................................passed
-And "status" is "OK"  in response body......................................passed
+Then verify "name" in response body equals "name" passed in add request.....passed
 ]]></system-out>
 </testcase>
 </testsuite>
